@@ -22,14 +22,12 @@ function succeed(item) {
 // - If the item's enhancement is 15 or more, the durability of the item is decreased by 10.
 // - If the item's enhancement level is greater than 16, the enhancement level decreases by 1 (17 goes down to 16, 18 goes down to 17).
 function fail(item) {
-  if (item.enhancement > 15) {
+  if (item.enhancement < 15) {
     return { ...item, durability: item.durability - 5 }
   } else if (item.enhancement >= 15) {
     return { ...item, durability: item.durability - 10 }
-  } else if (item.enhancement > 16) {
-    return { ...item, durability: item.durability - 1 }
   } else {
-    return { ...item }
+    return { ...item, durability: item.durability - 1 }
   }
 }
 
@@ -41,7 +39,7 @@ function repair(item) {
     ...item,
     durability: 100
   };
-  console.log(newItem)
+  return newItem;
 }
 
 function get(item) {
